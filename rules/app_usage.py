@@ -1,6 +1,6 @@
-from .base import EvalType
+from .base import BaseTracker
 
-class AppUsageRule(EvalType):
+class AppUsageRule(BaseTracker):
     def evaluate(self, context) -> int:
         app_name = self.rule["target"]
         interval = self.rule["points"]["interval"]

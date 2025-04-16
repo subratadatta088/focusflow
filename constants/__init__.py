@@ -6,6 +6,8 @@ CACHE_FLUSH_INTERVAL = 60
 
 DB_FLUSH_INTERVAL = 120
 
+ACTIVITY_TIMEOUT = 30
+
 IMPORTANT_APPS = [
     "code",                 # Visual Studio Code
     "pycharm",

@@ -1,6 +1,6 @@
-from .base import EvalType
+from .base import BaseTracker
 
-class URLWhitelistRule(EvalType):
+class URLWhitelistRule(BaseTracker):
     def evaluate(self, context) -> int:
         browsing_data = context.get("browser", {})
         points = 0
