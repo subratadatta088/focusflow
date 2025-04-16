@@ -1,6 +1,6 @@
 import time
 from pynput import mouse, keyboard
-from rules.base import BaseTracker
+from trackers.base import BaseTracker
 from models.app_activity import AppActivity
 import threading
 import platform
@@ -8,8 +8,9 @@ from constants import  CACHE_FLUSH_INTERVAL, DB_FLUSH_INTERVAL, ACTIVITY_TIMEOUT
 
 class ActivityTracker(BaseTracker):
     def __init__(self):
+        super().__init__()
         self.app_dict = {}
-        self.dir = "trackers/activity/"
+        self.dir = "trackers/app_activity/"
         self.last_cache_flush = time.time()
         self.last_db_flush = time.time()
         self.lock = threading.Lock()

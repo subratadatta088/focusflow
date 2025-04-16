@@ -1,11 +1,8 @@
-from config import SCORING_RULES
-from evaluator.rule_engine import evaluate_all_rules
-from context_mock.mock_data import context
-from trackers.app_usage.context import AppUsageTracker
+
+from trackers.app_usage.tracker import AppUsageTracker
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout
 from PyQt5.QtCore import QObject, QTimer, Qt, pyqtSignal, QThread
-from constants import CACHE_INTERVAL
-import time
+
 import sys
 
 class FocusWorker(QObject):
@@ -47,12 +44,6 @@ class FocusTimer(QWidget):
         self.stop_btn = QPushButton("Stop")
         self.stop_btn.clicked.connect(self.stop_timer)
 
-        # Minimize and Close buttons
-        # self.minimize_btn = QPushButton("Minimize")
-        # self.minimize_btn.clicked.connect(self.showMinimized)
-
-        # self.close_btn = QPushButton("Close")
-        # self.close_btn.clicked.connect(self.close)
 
         # Layouts
         btn_layout = QHBoxLayout()
@@ -60,14 +51,10 @@ class FocusTimer(QWidget):
         btn_layout.addWidget(self.pause_btn)
         btn_layout.addWidget(self.stop_btn)
 
-        window_ctrl_layout = QHBoxLayout()
-        # window_ctrl_layout.addWidget(self.minimize_btn)
-        # window_ctrl_layout.addWidget(self.close_btn)
 
         main_layout = QVBoxLayout()
         main_layout.addWidget(self.label)
         main_layout.addLayout(btn_layout)
-        main_layout.addLayout(window_ctrl_layout)
 
         self.setLayout(main_layout)
         # Timer

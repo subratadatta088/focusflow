@@ -1,10 +1,11 @@
 import time
-from rules.base import BaseTracker
+from trackers.base import BaseTracker
 from models.app_usage import AppUsage
 from constants import IMPORTANT_APPS ,CACHE_INTERVAL, CACHE_FLUSH_INTERVAL, DB_FLUSH_INTERVAL
 
 class AppUsageTracker(BaseTracker):
     def __init__(self):
+        super().__init__()
         self.cache = []
         self.last_cache_flush = time.time()
         self.last_db_flush = time.time()
@@ -73,5 +74,4 @@ class AppUsageTracker(BaseTracker):
         self.keep_running = False
         self.write_to_cache()
         self.dump_cache_to_db()
-        self.clear_cache()
         

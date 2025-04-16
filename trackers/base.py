@@ -6,8 +6,7 @@ import json
 from constants import CACHE_FILE 
 
 class BaseTracker(ABC):
-    def __init__(self, rule):
-        self.rule = rule
+    def __init__(self):
         self.lock = threading.Lock()
         self.platform = platform.system().lower()
         self.dir = "trackers/base/"
@@ -38,10 +37,10 @@ class BaseTracker(ABC):
      # Getting the focused app.
     def get_active_app(self):
         if self.platform == "darwin":
-            from .platform_utils.mac import get_focused_app as get_focused_app_mac
+            from platform_utils.mac import get_focused_app as get_focused_app_mac
             return get_focused_app_mac()
         elif self.platform == "windows":
-            from .platform_utils.windows import get_focused_app as get_focused_app_win
+            from platform_utils.windows import get_focused_app as get_focused_app_win
             return get_focused_app_win()
         else:
             raise NotImplementedError("Focused app detection not supported on this OS yet.")
