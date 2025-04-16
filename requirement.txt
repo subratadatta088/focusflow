@@ -1,0 +1,8 @@
+# Core dependencies
+psutil
+
+# macOS-specific packages
+pyobjc; platform_system == "Darwin"
+
+# Windows-specific packages
+pywin32; platform_system == "Windows"

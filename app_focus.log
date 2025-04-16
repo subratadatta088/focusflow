@@ -1,0 +1,108 @@
+
+ 0 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 1}, 'microsoft teams webview helper': {'focused': 0, 'background': 1}, 'google chrome': {'focused': 0, 'background': 1}, 'msteams': {'focused': 0, 'background': 1}, 'code': {'focused': 1, 'background': 0}}
+
+ 1 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 2}, 'microsoft teams webview helper': {'focused': 0, 'background': 2}, 'google chrome': {'focused': 0, 'background': 2}, 'msteams': {'focused': 0, 'background': 2}, 'code': {'focused': 2, 'background': 0}}
+
+ 2 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 3}, 'microsoft teams webview helper': {'focused': 0, 'background': 3}, 'google chrome': {'focused': 0, 'background': 3}, 'msteams': {'focused': 0, 'background': 3}, 'code': {'focused': 3, 'background': 0}}
+
+ 3 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 4}, 'microsoft teams webview helper': {'focused': 0, 'background': 4}, 'google chrome': {'focused': 0, 'background': 4}, 'msteams': {'focused': 0, 'background': 4}, 'code': {'focused': 4, 'background': 0}}
+
+ 4 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 5}, 'microsoft teams webview helper': {'focused': 0, 'background': 5}, 'google chrome': {'focused': 0, 'background': 5}, 'msteams': {'focused': 0, 'background': 5}, 'code': {'focused': 5, 'background': 0}}
+
+ 5 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 6}, 'microsoft teams webview helper': {'focused': 0, 'background': 6}, 'google chrome': {'focused': 0, 'background': 6}, 'msteams': {'focused': 0, 'background': 6}, 'code': {'focused': 6, 'background': 0}}
+
+ 6 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 7}, 'microsoft teams webview helper': {'focused': 0, 'background': 7}, 'google chrome': {'focused': 0, 'background': 7}, 'msteams': {'focused': 0, 'background': 7}, 'code': {'focused': 7, 'background': 0}}
+
+ 7 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 8}, 'microsoft teams webview helper': {'focused': 0, 'background': 8}, 'google chrome': {'focused': 0, 'background': 8}, 'msteams': {'focused': 0, 'background': 8}, 'code': {'focused': 8, 'background': 0}}
+
+ 8 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 9}, 'microsoft teams webview helper': {'focused': 0, 'background': 9}, 'google chrome': {'focused': 0, 'background': 9}, 'msteams': {'focused': 0, 'background': 9}, 'code': {'focused': 9, 'background': 0}}
+
+ 9 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 10}, 'microsoft teams webview helper': {'focused': 0, 'background': 10}, 'google chrome': {'focused': 0, 'background': 10}, 'msteams': {'focused': 0, 'background': 10}, 'code': {'focused': 10, 'background': 0}}
+
+ 10 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 11}, 'microsoft teams webview helper': {'focused': 0, 'background': 11}, 'google chrome': {'focused': 0, 'background': 11}, 'msteams': {'focused': 0, 'background': 11}, 'code': {'focused': 11, 'background': 0}}
+
+ 11 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 12}, 'microsoft teams webview helper': {'focused': 0, 'background': 12}, 'google chrome': {'focused': 0, 'background': 12}, 'msteams': {'focused': 0, 'background': 12}, 'code': {'focused': 12, 'background': 0}}
+
+ 12 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 13}, 'microsoft teams webview helper': {'focused': 0, 'background': 13}, 'google chrome': {'focused': 0, 'background': 13}, 'msteams': {'focused': 0, 'background': 13}, 'code': {'focused': 13, 'background': 0}}
+
+ 13 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 14}, 'microsoft teams webview helper': {'focused': 0, 'background': 14}, 'google chrome': {'focused': 0, 'background': 14}, 'msteams': {'focused': 0, 'background': 14}, 'code': {'focused': 14, 'background': 0}}
+
+ 14 seconds
+
+--- Eval Cycle ---
+Active App: code
+Running Important Apps: ['terminal', 'microsoft teams webview helper', 'google chrome', 'msteams', 'code']
+App Usage Snapshot: {'terminal': {'focused': 0, 'background': 15}, 'microsoft teams webview helper': {'focused': 0, 'background': 15}, 'google chrome': {'focused': 0, 'background': 15}, 'msteams': {'focused': 0, 'background': 15}, 'code': {'focused': 15, 'background': 0}}
+
+Final App Usage Summary:
+{'terminal': {'focused': 0, 'background': 15}, 'microsoft teams webview helper': {'focused': 0, 'background': 15}, 'google chrome': {'focused': 0, 'background': 15}, 'msteams': {'focused': 0, 'background': 15}, 'code': {'focused': 15, 'background': 0}}
