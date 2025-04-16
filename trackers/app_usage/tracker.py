@@ -1,12 +1,7 @@
 import time
 from rules.base import BaseTracker
 from models.app_usage import AppUsage
-
-
-import json
-from constants import IMPORTANT_APPS, CACHE_FILE ,CACHE_INTERVAL, CACHE_FLUSH_INTERVAL, DB_FLUSH_INTERVAL
-
- 
+from constants import IMPORTANT_APPS ,CACHE_INTERVAL, CACHE_FLUSH_INTERVAL, DB_FLUSH_INTERVAL
 
 class AppUsageTracker(BaseTracker):
     def __init__(self):
@@ -17,9 +12,7 @@ class AppUsageTracker(BaseTracker):
         self.keep_running = True
         self.app_dict = {}
         self.dir = "trackers/app_usage/"
-        
    
-        
     def evaluate(self):
         active_app = self.get_active_app()
         running_apps = self.get_running_apps()
@@ -42,7 +35,6 @@ class AppUsageTracker(BaseTracker):
         
         # Dev log
         print(f"[{time.strftime('%H:%M:%S')}] Active: {active_app} | Dict: {self.app_dict}")
-  
             
     def run(self):
         
@@ -76,8 +68,7 @@ class AppUsageTracker(BaseTracker):
                 self.clear_cache()       # Clear the local JSON cache file
                 self.app_dict = {}       # Reset in-memory app usage tracking
                 last_flush_time = time.time()
-
-                
+    
     def stop(self):
         self.keep_running = False
         self.write_to_cache()
