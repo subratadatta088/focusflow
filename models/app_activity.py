@@ -11,6 +11,6 @@ class AppActivity(BaseModel):
         today = date.today()
         for app, usage in app_dict.items():
             record, created = AppActivity.get_or_create(app_name=app, date=today)
-            record.focused_time += usage["focused"]
+            record.focused_time += int(usage)
             record.save()
         print("[✓] Flushed to DB successfully.")

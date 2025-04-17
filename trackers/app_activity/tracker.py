@@ -19,6 +19,8 @@ class ActivityTracker(BaseTracker):
         self.active_app = None
         self.last_activity_time = time.time()
         self.model = AppActivity
+        self.observer_thread = threading.Thread(target=self.app_switch_observer)
+        
 
     def track_activity(self):
         now = time.time()
@@ -26,7 +28,7 @@ class ActivityTracker(BaseTracker):
             elapsed = now - self.last_activity_time
             if elapsed < ACTIVITY_TIMEOUT:  # only count if it's still "active"
                 self.app_dict.setdefault(self.active_app, 0)
-                self.app_dict[self.active_app] += elapsed
+                self.app_dict[self.active_app] += int(elapsed)
         self.last_activity_time = now
 
     def on_activity(self, event=None):
@@ -34,7 +36,7 @@ class ActivityTracker(BaseTracker):
         self.active_app = self.get_active_app()
     
 
-    def listen_to_input(self):
+    def evaluate(self):
         
         def on_mouse_move(x, y): self.on_activity()
         def on_click(x, y, button, pressed): self.on_activity()
@@ -50,14 +52,16 @@ class ActivityTracker(BaseTracker):
 
     def run(self):
         self.dump_cache_to_db()
-        self.listen_to_input()
+        self.evaluate()
         
         current_time = time.time()
         last_cache_time = current_time
         last_flush_time = current_time
 
         self.keep_running = True
-
+       
+        self.observer_thread.start()
+            
         while self.keep_running:
             time.sleep(1)  # reduce CPU usage
 
@@ -71,8 +75,29 @@ class ActivityTracker(BaseTracker):
                 self.app_dict = {}
                 last_flush_time = time.time()
 
+    def join_observer(self):
+        """Wait for the observer thread to finish"""
+        self.observer_thread.join()
+        
     def stop(self):
         self.keep_running = False
         self.write_to_cache()
         self.dump_cache_to_db()
         self.clear_cache()
+        self.join_observer()
+        
+    def app_switch_observer(self):
+        print("[Observer] Observing the worker...")
+       
+        while self.keep_running:
+            print("[Observer] Doing observer's job...")
+            time.sleep(2)
+
+            if self.active_app != self.get_active_app():
+                print("Active app changed. Switching...")
+                self.active_app = self.get_active_app()
+
+        print("[Observer] Worker has stopped, observer finalizing...")
+        time.sleep(2)
+        print("[Observer] Observer done.")
+

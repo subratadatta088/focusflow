@@ -2,6 +2,7 @@
 from trackers.app_usage.tracker import AppUsageTracker
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout
 from PyQt5.QtCore import QObject, QTimer, Qt, pyqtSignal, QThread
+from PyQt5.QtGui import QPainter, QLinearGradient, QColor
 
 import sys
 
@@ -21,8 +22,15 @@ class FocusWorker(QObject):
         self.ctx.stop()
         
 class FocusTimer(QWidget):
+    def paintEvent(self, event):
+            painter = QPainter(self)
+            gradient = QLinearGradient(0, 0, self.width(), self.height())
+            gradient.setColorAt(0, QColor("#81C2E3"))
+            gradient.setColorAt(1, QColor("#FFFCCF"))
+            painter.fillRect(self.rect(), gradient)
     def __init__(self):
         super().__init__()
+         # Set the gradient background
 
         self.setWindowTitle("FocusFlow")
         self.setFixedSize(250, 180)
@@ -31,8 +39,10 @@ class FocusTimer(QWidget):
         self.timer_running = False
 
         self.label = QLabel("00:00:00", self)
-        self.label.setStyleSheet("font-size: 48px;color:#bc9272")
+        self.label.setStyleSheet("font-size: 48px;color:#02124f")
         self.label.setAlignment(Qt.AlignCenter)
+        
+       
 
         # Timer buttons
         self.start_btn = QPushButton("Start")
@@ -53,6 +63,7 @@ class FocusTimer(QWidget):
 
 
         main_layout = QVBoxLayout()
+        
         main_layout.addWidget(self.label)
         main_layout.addLayout(btn_layout)
 

@@ -1,6 +1,4 @@
-from trackers.app_usage.context import AppUsageTracker
-import time
-from models.app_usage import AppUsage
+from trackers import ACTIVITY_TRACKER,APP_USAGE_TRACKER
 important_apps = [
     "code",                 # Visual Studio Code
     "pycharm",
@@ -38,10 +36,10 @@ app_dict = {
 INTERVAL = 1
 
 def evalEngine():
-    ctx = AppUsageTracker()
+    ctx = APP_USAGE_TRACKER()
     active_app = ctx.get_active_app()
     active_app = active_app.lower().strip() if active_app else None
-    running_apps = [app.lower().strip() for app in AppUsageTracker.get_running_apps()]
+    running_apps = [app.lower().strip() for app in APP_USAGE_TRACKER.get_running_apps()]
     important_running_apps = list(set(running_apps) & set(important_apps))
 
 
@@ -66,8 +64,6 @@ def evalEngine():
     print(f"App Usage Snapshot: {app_dict}")
      
 
-all_data = AppUsage.select()
-
-for entry in all_data:
-    print(f"App: {entry.app_name}, Focused: {entry.focused_time}, Background: {entry.background_time}, Date: {entry.date}")
-# print([app.lower().strip() for app in AppUsageTracker.get_running_apps()])
+app_tracker = ACTIVITY_TRACKER()
+app_tracker.run()
+# print([app.lower().strip() for app in APP_USAGE_TRACKER.get_running_apps()])
