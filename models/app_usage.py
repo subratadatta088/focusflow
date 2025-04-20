@@ -1,6 +1,7 @@
-from peewee import Model, CharField, IntegerField, DateField
-from datetime import datetime,date
+from peewee import CharField, IntegerField, DateField
+from datetime import date
 from models import BaseModel
+from peewee import fn
 
 class AppUsage(BaseModel):
     app_name = CharField()
@@ -12,7 +13,9 @@ class AppUsage(BaseModel):
         today = date.today()
         for app, usage in app_dict.items():
             record, created = AppUsage.get_or_create(app_name=app, date=today)
-            record.focused_time += usage["focused"]
+            record.focused_time = (record.focused_time or 0) + usage["focused"]
             record.background_time += usage["background"]
             record.save()
-        print("[✓] Flushed to DB successfully.")
+        print("[✓] Flushed to AppUsage DB successfully.")
+    
+   

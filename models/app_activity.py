@@ -13,4 +13,10 @@ class AppActivity(BaseModel):
             record, created = AppActivity.get_or_create(app_name=app, date=today)
             record.focused_time += int(usage)
             record.save()
-        print("[✓] Flushed to DB successfully.")
+        print("[✓] Flushed to AppActivity DB successfully.")
+        
+    def get_today_data(today = None):
+        today = date.today() if today is None else today
+        query = (AppActivity.select().where(AppActivity.date == today))
+        for record in query:
+            print(record.app_name, record.focused_time)

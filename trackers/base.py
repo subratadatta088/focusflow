@@ -7,7 +7,6 @@ from constants import CACHE_FILE
 
 class BaseTracker(ABC):
     def __init__(self):
-        self.lock = threading.Lock()
         self.platform = platform.system().lower()
         self.dir = "trackers/base/"
         self.app_dict = {}

@@ -38,3 +38,6 @@ IMPORTANT_APPS = [
     "jira",
     "obsidian"
 ]
+
+THRESHOLD_ACTIVATION = 5
+THRESHOLD_SUSPICIOUS_TIME = 30

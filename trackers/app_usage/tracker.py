@@ -13,7 +13,7 @@ class AppUsageTracker(BaseTracker):
         self.keep_running = True
         self.app_dict = {}
         self.dir = "trackers/app_usage/"
-   
+    
     def evaluate(self):
         active_app = self.get_active_app()
         running_apps = self.get_running_apps()
