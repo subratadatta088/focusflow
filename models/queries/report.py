@@ -1,6 +1,7 @@
 from peewee import fn, JOIN
 from ..app_activity import AppActivity
 from ..app_usage import AppUsage
+from ..timer_session import TimerSession
 # Assuming `AppUsage` and `AppActivity` are already defined as in your example
 
 def fetch_app_usage_and_activity(date):
@@ -27,3 +28,30 @@ def fetch_app_usage_and_activity(date):
         })
 
     return results
+
+
+def fetch_timer_sessions(date):
+    query = (
+        TimerSession
+        .select()
+        .where(date == date)
+    )
+    
+    results = []
+    
+    for record in query:
+        results.append({
+            "start_time": record.start_time,
+            "end_time": record.end_time,
+            "active_duration":record.active_duration
+        })
+
+    return results
+
+def get_total_active_duration(target_date):
+    total = (TimerSession
+             .select(fn.SUM(TimerSession.active_duration).alias('total'))
+             .where(TimerSession.date == target_date)
+             .scalar())
+    
+    return total or 0  # If no sessions, return 0

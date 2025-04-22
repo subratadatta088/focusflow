@@ -5,7 +5,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 from datetime import datetime
-from models.queries.report import fetch_app_usage_and_activity
+from models.queries.report import fetch_app_usage_and_activity, get_total_active_duration
 
 def format_time(seconds):
     if seconds == 0:
@@ -21,6 +21,7 @@ def generate_report(app_logs):
     focus_scores = {}
     score_sum = 0
     score_count = 0
+    
 
     for app in app_logs:
         name = app['app_name']
@@ -49,7 +50,7 @@ def generate_report(app_logs):
 
         # Focus score
         total_time = focused + background + 1  # to avoid division by zero
-        score = round((focused + activity) / total_time * 100, 2)
+        score = round(activity / total_time * 100, 2)
         focus_scores[name] = score
         score_sum += score
         score_count += 1
@@ -74,20 +75,28 @@ def generate_pdf(report_data):
     c = canvas.Canvas(buffer, pagesize=letter)
     width, height = letter
 
+    #Doc title
+    today = date.strftime('%d-%m-%Y')
+    c.setTitle(f"FocusFlow Report {today}")
     # Title
     c.setFont("Helvetica-Bold", 24)
     c.setFillColor(colors.darkolivegreen)
     c.drawString(50, 730, "📊 Focus Report:")
+    
     c.setFont("Helvetica-Bold", 18)
     c.setFillColor(colors.olivedrab)
-    c.drawRightString(width - 50, 690, f"Score: {report_data['final_score']} / 100")
+    c.drawRightString(width - 50, 670, f"Score: {report_data['final_score']} / 100")
     
-    c.setFont("Helvetica", 18)
-    c.setFillColor(colors.black)
-    c.drawString(55, 690, "Date: "+ str(datetime.today()))
+    c.setFont("Helvetica-Bold", 18)
+    c.setFillColor(colors.olivedrab)
+    c.drawCentredString(width/2, 670, f"Total: {format_time(report_data['total_time'])}")
+    
+    c.setFont("Helvetica-Bold", 18)
+    c.setFillColor(colors.olivedrab)
+    c.drawString(55, 670, "Date: "+ str(datetime.today().strftime("%d-%m-%Y")))
     
 
-    y_position = 660
+    y_position = 630
 
     # Table Headers
     c.setFont("Helvetica-Bold", 14)
@@ -115,47 +124,47 @@ def generate_pdf(report_data):
             y_position = 750
 
     # Section: Top 3 Apps
-    y_position -= 20
+    y_position -= 25
     c.setFont("Helvetica-Bold", 16)
     c.setFillColor(colors.black)
     c.drawString(50, y_position, "⭐ Top 3 App Usage (Based on Focused Time):")
-    y_position -= 25
-    c.setFont("Helvetica", 11)
+    y_position -= 35
+    c.setFont("Helvetica", 15)
     c.setFillColor(colors.black)
-
+    x_pos = 60
     for idx, app in enumerate(report_data['top_apps'], start=1):
-        c.drawString(60, y_position, f"{idx}. {app['app_name'].title()}: {app['focused_time']} seconds")
-        y_position -= 18
+        c.drawString(x_pos, y_position, f"{idx}. {app['app_name'].title()}: {format_time(app['focused_time'])}")
+        x_pos += 200
 
     # Section: Concerns or Lookouts
-    y_position -= 15
+    y_position -= 50
     c.setFont("Helvetica-Bold", 16)
     c.setFillColor(colors.black)
     c.drawString(50, y_position, "⚠️ Concerns or Lookouts:")
     y_position -= 25
-    c.setFont("Helvetica", 11)
+    c.setFont("Helvetica", 14)
     c.setFillColor(colors.black)
 
     for concern in report_data['concerns']:
         c.drawString(60, y_position, f"• {concern}")
-        y_position -= 18
+        y_position -= 20
 
         if y_position < 100:
             c.showPage()
             y_position = 750
 
     # Section: Focus Scores
-    y_position -= 10
+    y_position -= 30
     c.setFont("Helvetica-Bold", 16)
     c.setFillColor(colors.black)
     c.drawString(50, y_position, "🎯 Focus Scores:")
     y_position -= 25
-    c.setFont("Helvetica", 13)
+    c.setFont("Helvetica", 14)
     c.setFillColor(colors.black)
 
     for app, score in report_data['focus_scores'].items():
         c.drawString(60, y_position, f"{app.title()}: {score:.2f}%")
-        y_position -= 18
+        y_position -= 22
 
         if y_position < 100:
             c.showPage()
@@ -170,12 +179,15 @@ def generate_pdf(report_data):
 date = datetime.today()
 report_data = fetch_app_usage_and_activity(date)
 report_data = generate_report(report_data)
+report_data["total_time"] = get_total_active_duration(date)
+
 # Generate the PDF
 pdf_buffer = generate_pdf(report_data)
 
 # Get user's Downloads folder
 downloads_path = str(Path.home() / "Downloads")
-filename = f"usage_report_{date}.pdf"
+today = date.strftime("%d-%m-%Y")
+filename = f"usage_report_{today}.pdf"
 pdf_path = os.path.join(downloads_path, filename)
 
 

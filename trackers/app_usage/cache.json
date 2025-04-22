@@ -1,1 +1,18 @@
-{}
+{
+    "google chrome": {
+        "focused": 54,
+        "background": 9
+    },
+    "terminal": {
+        "focused": 6,
+        "background": 57
+    },
+    "code": {
+        "focused": 3,
+        "background": 0
+    },
+    "docker": {
+        "focused": 0,
+        "background": 3
+    }
+}

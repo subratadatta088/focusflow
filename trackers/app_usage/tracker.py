@@ -34,8 +34,6 @@ class AppUsageTracker(BaseTracker):
             else:
                 self.app_dict[app]["background"] += CACHE_INTERVAL
         
-        # Dev log
-        print(f"[{time.strftime('%H:%M:%S')}] Active: {active_app} | Dict: {self.app_dict}")
             
     def run(self):
         
@@ -57,7 +55,7 @@ class AppUsageTracker(BaseTracker):
 
             # Wait for the next cycle
             time.sleep(CACHE_INTERVAL)
-
+            print(f"[🧠] Usage Data: {self.app_dict}")
             # Periodically write current in-memory app usage to the cache file
             if time.time() - last_cache_time >= CACHE_FLUSH_INTERVAL:
                 self.write_to_cache()
