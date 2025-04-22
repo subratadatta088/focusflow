@@ -39,5 +39,7 @@ IMPORTANT_APPS = [
     "obsidian"
 ]
 
-THRESHOLD_ACTIVATION = 5
-THRESHOLD_SUSPICIOUS_TIME = 30
+THRESHOLD_ACTIVATION = 5        # seconds to activate suspicious session
+THRESHOLD_SUSPICIOUS_TIME = 30  # seconds after which it's considered fake activity
+PATTERN_WINDOW = 30             # how many entries to store
+THRESHOLD_LONG_PRESS = 30       # seconds after which it's considered fake activity

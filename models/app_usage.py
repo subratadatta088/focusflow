@@ -18,4 +18,10 @@ class AppUsage(BaseModel):
             record.save()
         print("[✓] Flushed to AppUsage DB successfully.")
     
+    def get_today_data(today = None):
+        today = date.today() if today is None else today
+        query = (AppUsage.select().where(AppUsage.date == today))
+        print("App Name", "Focused Time", "Background Time")
+        for record in query:
+            print(record.app_name, record.focused_time, record.background_time)
    

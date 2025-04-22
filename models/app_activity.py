@@ -18,5 +18,6 @@ class AppActivity(BaseModel):
     def get_today_data(today = None):
         today = date.today() if today is None else today
         query = (AppActivity.select().where(AppActivity.date == today))
+        print("App Name", "Activity Time")
         for record in query:
             print(record.app_name, record.focused_time)

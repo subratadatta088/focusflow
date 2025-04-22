@@ -1,9 +1,11 @@
 from PyQt5.QtWidgets import QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout
-from PyQt5.QtCore import QTimer, Qt, QThread
+from PyQt5.QtCore import QTimer, Qt, QThread, pyqtSlot
 from PyQt5.QtGui import QPainter, QLinearGradient, QColor
 from managers.tracker_manager import FocusWorker
 from trackers import TRACKER_SERVICES
+from events.stop_timer import StopTimer
 from typing import List
+
 
 class FocusTimer(QWidget):
     def paintEvent(self, event):
@@ -16,11 +18,17 @@ class FocusTimer(QWidget):
     def __init__(self):
         super().__init__()
         self.trackers: List[FocusWorker] = []
-        for service in TRACKER_SERVICES:
-            context = service()
+        for service in TRACKER_SERVICES:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+            context = service()                                      
             worker = FocusWorker(context)
-            self.trackers.append(worker)
+            self.trackers.append(worker)                                                                                                                                      
 
+        self.thread = QThread()
+        self.events = StopTimer()
+        self.events.moveToThread(self.thread)
+        self.events.execute.connect(self.pause_timer_from_event)
+        self.thread.start()
+        
         self.setWindowTitle("FocusFlow")
         self.setFixedSize(250, 180)
         self.label = QLabel("00:00:00", self)
@@ -35,7 +43,7 @@ class FocusTimer(QWidget):
         btn_layout.addWidget(self.start_btn)
         btn_layout.addWidget(self.pause_btn)
         btn_layout.addWidget(self.stop_btn)
-
+                                         
         main_layout = QVBoxLayout()
         main_layout.addWidget(self.label)
         main_layout.addLayout(btn_layout)
@@ -67,6 +75,12 @@ class FocusTimer(QWidget):
             for worker in self.trackers:
                 worker.run()
 
+    @pyqtSlot(str)
+    def pause_timer_from_event(self):
+        print("stop event received!")
+        self.pause_timer()
+        
+        
     def pause_timer(self):
         if self.timer_running:
             self.timer.stop()
@@ -80,3 +94,4 @@ class FocusTimer(QWidget):
         self.seconds = 0
         self.label.setText("00:00:00")
 
+                                                                                                                                                                                                                                                                              
